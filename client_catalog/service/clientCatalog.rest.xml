@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/rest-api-2.1.xsd"
+        name="arya" displayName="Arya Client Catalogs REST API" version="2.0.0">
+
+      
+    <resource name="clientCatalogs" require-authentication="anonymous-all">
+       
+  
+    <resource name="parties"><method type="post">
+            <service name="mantle.party.PartyServices.create#Party"/></method></resource>
+
+   
+     </resource>
+</resource>

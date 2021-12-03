@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/rest-api-2.1.xsd"
+        name="parties" displayName="Test REST API" version="2.0.0">
+
+        <resource name="parties"   require-authentication="anonymous-all"> 
+        <method type="get"><entity name="parties" operation="list"/></method>
+ <method type="post"><service name="moqui.parties.partiesServices.create#parties"/></method>
+          </resource>
+
+
+ <resource name="client_catalog"><method type="post">
+            <service name="mantle.party.PartyServices.create#client_catalog"/></method></resource>
+
+
+
+
+             <resource name="login"   require-authentication="anonymous-all"> 
+        
+ <method type="get"><service name="moqui.parties.partiesServices.login#User"/></method>
+          </resource>
+
+
+</resource>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-2.1.xsd">
+
+    <!-- client_catalog create Services -->
+  
+
+         <service verb="create" noun="Party" authenticate="anonymous-all">
+        <in-parameters>
+            <auto-parameters entity-name="mantle.party.Party"/>
+            <auto-parameters entity-name="mantle.party.Organization" include="nonpk"/>
+          
+            <parameter name="organizationName" required="true"/>
+           
+        </in-parameters>
+        <out-parameters><parameter name="partyId"/></out-parameters>
+        <actions>
+            <service-call name="create#mantle.party.Party" in-map="context"/>
+            <service-call name="create#mantle.party.Organization" in-map="context"/>
+           
+            
+            </actions>
+    </service>
+
+
+
+
+      <service verb="update" noun="Party" type="entity-auto" allow-remote="true">
+        <in-parameters>
+            <auto-parameters entity-name="mantle.party.Party"/>
+            <auto-parameters entity-name="mantle.party.Organization" include="nonpk"/>
+            <auto-parameters entity-name="mantle.party.contact.PartyContactMech" include="nonpk"/>
+            <auto-parameters entity-name="mantle.party.PartyIdentification" include="nonpk"/>
+            <auto-parameters entity-name="mantle.party.contact.PostalAddress" include="nonpk"/>
+            <auto-parameters entity-name="mantle.party.contact.TelecomNumber" include="nonpk"/>
+            <auto-parameters entity-name="mantle.party.contact.ContactMech" include="nonpk"/>
+             <parameter name="partyId" required="true"/>
+            
+            
+            <parameter name="organizationName" required="true"/>
+            <parameter name="roleTypeId"/>
+        </in-parameters>
+        <out-parameters><parameter name="partyId"/></out-parameters>
+        <actions>
+            <service-call name="update#mantle.party.Party" in-map="context + [partyTypeEnumId:'PtyOrganization']" out-map="context"/>
+            <service-call name="update#mantle.party.Organization" in-map="context"/>
+            <service-call name="update#mantle.party.contact.PartyContactMech" in-map="context"/>
+            <service-call name="update#mantle.party.PartyIdentification" in-map="context"/>
+            <service-call name="update#mantle.party.contact.PostalAddress" in-map="context"/>
+            <service-call name="update#mantle.party.contact.TelecomNumber" in-map="context"/>
+            <service-call name="update#mantle.party.contact.ContactMech" in-map="context"/>
+            
+            <if condition="roleTypeId"><service-call name="update#mantle.party.PartyRole" in-map="[partyId:partyId, roleTypeId:roleTypeId]"/></if></actions>
+    </service>
+
+
+    
+
+
+     <!-- client_catalog get Services -->
+      
+    
+     <service verb="find" noun="client_catalog" type="script"
+             location="component://mantle-usl/service/mantle/party/PartyServices/findParty.groovy">
+        <in-parameters>
+            <parameter name="partyId"/>
+            <parameter name="pseudoId"/>
+            <parameter name="partyTypeEnumId"/>
+            <parameter name="disabled"/>
+            <parameter name="hasDuplicates"/>
+            <parameter name="roleTypeId"/>
+            <parameter name="username"/>
+
+            <parameter name="combinedName"/>
+            <parameter name="organizationName"/>
+            <parameter name="firstName"/><parameter name="lastName"/><parameter name="suffix"/>
+
+            <parameter name="address1"/><parameter name="address2"/>
+            <parameter name="city"/><parameter name="stateProvinceGeoId"/><parameter name="postalCode"/>
+            <parameter name="countryCode"/><parameter name="areaCode"/><parameter name="contactNumber"/>
+            <parameter name="emailAddress"/>
+            <parameter name="assetSerialNumber"/>
+
+            <parameter name="orderByField" default-value="firstName,organizationName"/>
+            <parameter name="pageIndex" type="Integer" default="0"/>
+            <parameter name="pageSize" type="Integer" default="20"/>
+            <parameter name="pageNoLimit" type="Boolean" default="false"/>
+            <parameter name="leadingWildcard" type="Boolean" default="false"><description>Defaults for false for DB query performance reasons.</description></parameter>
+        </in-parameters>
+        <out-parameters>
+            <parameter name="partyIdList" type="List"><parameter name="partyId"/></parameter>
+            <parameter name="partyIdListCount" type="Integer"/>
+            <parameter name="partyIdListPageIndex" type="Integer"/>
+            <parameter name="partyIdListPageSize" type="Integer"/>
+            <parameter name="partyIdListPageMaxIndex" type="Integer"/>
+            <parameter name="partyIdListPageRangeLow" type="Integer"/>
+            <parameter name="partyIdListPageRangeHigh" type="Integer"/>
+        </out-parameters>
+    </service>
+
+
+
+    <!-- client_catalog get Services -->
+
+        <service verb="get" noun="client_catalog">
+        <in-parameters>
+        <parameter name="partyId"/>
+        <parameter name="organizationName"/>
+        
+        </in-parameters>
+        <out-parameters>
+         <parameter name="partyId"/>
+        <parameter name="organizationName"/>
+        </out-parameters>
+        <actions>
+            <entity-find-one entity-name="mantle.party.Party" value-field="partyId"/>
+            <entity-find-one entity-name="mantle.party.Organization" value-field="partyId"/>
+          
+        </actions>
+    </service>
+
+
+
+
+
+
+
+
+
+
+
+      <!-- Login -->
+        <service verb="login" noun="User">
+        <in-parameters>
+            <parameter name="username" required="true"/>
+            <parameter name="password" required="true"/>
+        </in-parameters>
+
+          <out-parameters>
+            <parameter name="apiKey"/>
+            <parameter name="moquiSessionToken"/>
+        </out-parameters>
+
+         <actions>
+         <script> ec.user.loginUser(username, password)</script>
+            <set field="apiKey" from="ec.user.getLoginKey()"/>
+            <log level="moquiSessionToken" from="ec.web.sessionToken"/>
+        </actions>
+
+     </service>
+
+
+
+
+
+   </services> 

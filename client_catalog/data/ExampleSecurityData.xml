@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This software is in the public domain under CC0 1.0 Universal plus a 
+Grant of Patent License.
+
+To the extent possible under law, the author(s) have dedicated all
+copyright and related and neighboring rights to this software to the
+public domain worldwide. This software is distributed without any
+warranty.
+
+You should have received a copy of the CC0 Public Domain Dedication
+along with this software (see the LICENSE.md file). If not, see
+<http://creativecommons.org/publicdomain/zero/1.0/>.
+-->
+<entity-facade-xml type="seed-initial">
+    <!-- NOTE: subscreen configuration is now in the MoquiConf.xml file instead of DB records
+    <moqui.screen.SubscreensItem screenLocation="component://webroot/screen/webroot/apps.xml" subscreenName="client_catalog" menuTitle="client_catalog"
+            menuIndex="97" menuInclude="Y" subscreenLocation="component://client_catalog/screen/client_catalogApp.xml"/>
+    -->
+
+ 
+    <!-- Full permissions for the ADMIN user group -->
+    <moqui.security.ArtifactAuthz artifactAuthzId="client_catalog_AUTHZ_ALL" userGroupId="ADMIN" artifactGroupId="client_catalog_APP"
+            authzTypeEnumId="AUTHZT_ALWAYS" authzActionEnumId="AUTHZA_ALL"/>
+
+    <!-- Artifact group for all of the client_catalog REST API via the client_catalog resource (the root resource) -->
+    <moqui.security.ArtifactGroup artifactGroupId="client_catalog_API" description="client_catalog REST API (via root resource)"/>
+    <moqui.security.ArtifactGroupMember artifactGroupId="client_catalog_API" artifactTypeEnumId="AT_REST_PATH"
+            inheritAuthz="Y" artifactName="/client_catalog"/>
+    <!-- Full permissions for the ADMIN user group -->
+    <moqui.security.ArtifactAuthz artifactAuthzId="client_catalogAPI_AUTHZ_ALL" userGroupId="ADMIN" artifactGroupId="client_catalog_API"
+            authzTypeEnumId="AUTHZT_ALWAYS" authzActionEnumId="AUTHZA_ALL"/>
+</entity-facade-xml>

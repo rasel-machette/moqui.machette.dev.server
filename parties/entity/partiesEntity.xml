@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/entity-definition-2.1.xsd">
+
+<entity entity-name="parties" package="moqui.parties" short-alias="parties">
+        <field name="partyId" type="id" is-pk="true"><description>primary sequenced ID</description></field>
+        <field name="partyTypeEnumId" type="id"/>
+        <field name="statusId" type="id" enable-audit-log="true"/>
+        <field name="partyName" type="text-medium"/>
+        <field name="description" type="text-medium"/>
+        <field name="longDescription" type="text-very-long"/>
+        <field name="comments" type="text-long"/>
+        <field name="partySize" type="number-integer"/>
+        <field name="partyDate" type="date-time"/>
+        <field name="testDate" type="date"/>
+        <field name="testTime" type="time"/>
+        </entity>
+     </entities>   

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/entity-definition-2.1.xsd">
+
+<entity entity-name="invoices" package="moqui.parties" short-alias="invoices">
+        <field name="id" type="id" is-pk="true"><description>primary sequenced ID</description></field>
+        <field name="transmitterName" type="text-medium"/>
+        <field name="fileName" type="text-medium"/>
+        <field name="transmitterCif" type="text-medium"/>
+        <field name="receptorName" type="text-medium"/>
+        <field name="receptorCif" type="text-medium"/>
+        <field name="invoiceNumber" type="text-medium"/>
+        <field name="invoiceType" type="text-medium"/>
+        <field name="invoiceDate" type="text-medium"/>
+        <field name="invoiceContableDate" type="text-medium"/>
+        <field name="concept" type="text-medium"/>
+        <field name="base0" type="text-medium"/>
+        <field name="base1" type="text-medium"/>
+        <field name="base2" type="text-medium"/>
+        <field name="base3" type="text-medium"/>
+        <field name="iva" type="text-medium"/>
+        <field name="iva0" type="text-medium"/>
+        <field name="iva1" type="text-medium"/>
+        <field name="iva2" type="text-medium"/>
+        <field name="iva3" type="text-medium"/>
+        <field name="total" type="text-medium"/>
+        <field name="retentionImports" type="text-medium"/>
+        <field name="paymentType" type="text-medium"/>
+        <field name="status" type="text-medium"/>
+        <field name="category" type="text-medium"/>
+        <field name="types" type="text-medium"/>
+        <field name="owner" type="text-medium"/>
+        <field name="vigencyDate" type="text-medium"/>
+        <field name="baseD" type="text-medium"/>
+        <field name="ivaD" type="text-medium"/>
+        <field name="totalD" type="text-medium"/>
+        <field name="retentionImportsD" type="text-medium"/>
+        <field name="classification" type="text-medium"/>
+        <field name="base0D" type="text-medium"/>
+        <field name="base1D" type="text-medium"/>
+        <field name="base2D" type="text-medium"/>
+        <field name="base3D" type="text-medium"/>
+        <field name="iva0D" type="text-medium"/>
+        <field name="iva1D" type="text-medium"/>
+        <field name="iva2D" type="text-medium"/>
+        <field name="iva3D" type="text-medium"/>
+        <field name="invoiceContableDateDt" type="text-medium"/>
+        <field name="businessOwner" type="text-medium"/>
+        <field name="sublevel1" type="text-medium"/>
+        <field name="sublevel2" type="text-medium"/>
+        <field name="percentageBase" type="text-medium"/>
+        </entity>
+     </entities> 
